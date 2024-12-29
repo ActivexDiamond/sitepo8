@@ -1,0 +1,100 @@
+#
+# Alternate between Hello and World
+#
+
+## define character slices
+>$480
+set $a00 %01000100
+set $a01 %01111100
+
+set $a02 %01000000
+
+set $a03 %01010100
+
+set $a04 %01111000
+
+## define clock
+set $a05 %00000000
+ain $a05
+
+set $a06 %00000001
+bin $a06
+
+jmp $900
+
+## run clock
+>$900
+and
+jiz $b00
+jnz $c00
+
+## print hello world!
+# hello
+>$b00
+cop $a00 $000
+cop $a01 $001
+cop $a02 $002
+cop $a02 $003
+cop $a01 $004
+
+cop $a00 $00c
+cop $a02 $00d
+cop $a02 $00e
+cop $a02 $00f
+cop $a00 $010
+
+cop $a01 $018
+cop $a01 $019
+cop $a02 $01a
+cop $a02 $01b
+cop $a00 $01c
+
+cop $a00 $024
+cop $a02 $025
+cop $a02 $026
+cop $a02 $027
+cop $a00 $028
+
+cop $a00 $030
+cop $a01 $031
+cop $a01 $032
+cop $a01 $033
+cop $a01 $034
+
+ain $a06
+jmp $900
+
+# world
+>$c00
+cop $a00 $000
+cop $a01 $001
+cop $a01 $002
+cop $a02 $003
+cop $a04 $004
+
+cop $a03 $00c
+cop $a00 $00d
+cop $a00 $00e
+cop $a02 $00f
+cop $a00 $010
+
+cop $a03 $018
+cop $a00 $019
+cop $a04 $01a
+cop $a02 $01b
+cop $a00 $01c
+
+cop $a03 $024
+cop $a00 $025
+cop $a00 $026
+cop $a02 $027
+cop $a00 $028
+
+cop $a01 $030
+cop $a01 $031
+cop $a00 $032
+cop $a01 $033
+cop $a01 $034
+
+ain $a05
+jmp $900
